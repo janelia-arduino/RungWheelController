@@ -16,6 +16,13 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
+enum {DIGITAL_INPUT_COUNT=3};
+enum {DIGITAL_OUTPUT_COUNT=2};
+
+extern const size_t di_pins[DIGITAL_INPUT_COUNT];
+extern const size_t do_pins[DIGITAL_OUTPUT_COUNT];
+
+extern const size_t enable_increment_pin;
 
 // Units
 
