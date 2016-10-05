@@ -5,8 +5,8 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#ifndef H_BRIDGE_CONTROLLER_H
-#define H_BRIDGE_CONTROLLER_H
+#ifndef RUNG_WHEEL_CONTROLLER_H
+#define RUNG_WHEEL_CONTROLLER_H
 #include "Flash.h"
 #include <EEPROM.h>
 #include "Streaming.h"
@@ -35,50 +35,13 @@ class RungWheelController : public HBridgeController
 public:
   RungWheelController();
   virtual void setup();
-  void setChannelOn(const size_t channel, const h_bridge_controller::constants::Polarity polarity);
-  void setChannelOff(const size_t channel);
-  void setChannelsOn(const uint32_t channels, const h_bridge_controller::constants::Polarity polarity);
-  void setChannelsOff(const uint32_t channels);
-  void setAllChannelsOn(const h_bridge_controller::constants::Polarity polarity);
-  void setAllChannelsOff();
-  int addPwm(const uint32_t channels,
-             const h_bridge_controller::constants::Polarity polarity,
-             const long delay,
-             const long period,
-             const long on_duration,
-             const long count);
-  int startPwm(const uint32_t channels,
-               const h_bridge_controller::constants::Polarity polarity,
-               const long delay,
-               const long period,
-               const long on_duration);
-  void stopPwm(const int pwm_index);
-  void stopAllPwm();
-  uint32_t arrayToChannels(ArduinoJson::JsonArray & channels_array);
-  h_bridge_controller::constants::Polarity stringToPolarity(const char * string);
 
 private:
-  modular_server::Field fields_[h_bridge_controller::constants::FIELD_COUNT_MAX];
-  modular_server::Parameter parameters_[h_bridge_controller::constants::PARAMETER_COUNT_MAX];
-  modular_server::Method methods_[h_bridge_controller::constants::METHOD_COUNT_MAX];
-
-  IndexedContainer<h_bridge_controller::constants::PulseInfo,
-                   h_bridge_controller::constants::INDEXED_PULSES_COUNT_MAX> indexed_pulses_;
+  modular_server::Field fields_[rung_wheel_controller::constants::FIELD_COUNT_MAX];
+  modular_server::Parameter parameters_[rung_wheel_controller::constants::PARAMETER_COUNT_MAX];
+  modular_server::Method methods_[rung_wheel_controller::constants::METHOD_COUNT_MAX];
 
   // Callbacks
-  void setChannelOnCallback();
-  void setChannelOffCallback();
-  void setChannelsOnCallback();
-  void setChannelsOffCallback();
-  void setAllChannelsOnCallback();
-  void setAllChannelsOffCallback();
-  void addPwmCallback();
-  void startPwmCallback();
-  void stopPwmCallback();
-  void stopAllPwmCallback();
-  void setChannelsOnCallback(int index);
-  void setChannelsOffCallback(int index);
-  void stopPwmCallback(int index);
 
 };
 
