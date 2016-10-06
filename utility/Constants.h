@@ -25,6 +25,10 @@ extern ConstantString device_name;
 extern ConstantString firmware_name;
 extern const modular_server::FirmwareInfo firmware_info;
 
+extern const uint32_t flipper_channels;
+extern const h_bridge_controller::constants::Polarity polarity_up;
+extern const h_bridge_controller::constants::Polarity polarity_down;
+
 // Units
 
 // Fields

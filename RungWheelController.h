@@ -20,8 +20,9 @@
 #include "SavedVariable.h"
 #include "Functor.h"
 
-#include "EventController.h"
 #include "IndexedContainer.h"
+#include "FunctorCallbacks.h"
+#include "EventController.h"
 
 #include "ModularServer.h"
 #include "ModularDevice.h"
@@ -41,7 +42,18 @@ private:
   modular_server::Parameter parameters_[rung_wheel_controller::constants::PARAMETER_COUNT_MAX];
   modular_server::Method methods_[rung_wheel_controller::constants::METHOD_COUNT_MAX];
 
+  volatile bool flipping_;
+  volatile bool flipping_enabled_;
+  volatile long flipper_up_inc_;
+  volatile long flipper_down_inc_;
+  volatile bool flipper_is_up_;
+  volatile long flipper_up_count_;
+
+  void flip(const h_bridge_controller::constants::Polarity polarity);
+
   // Callbacks
+  void flipCallback();
+  virtual void stopPwmCallback(int index);
 
 };
 
