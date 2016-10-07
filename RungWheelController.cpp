@@ -46,15 +46,19 @@ void RungWheelController::setup()
   // Set Device ID
   modular_server_.setDeviceName(constants::device_name);
 
-  // Add Device Info
-  modular_server_.addFirmwareInfo(constants::firmware_info);
+  // Add Hardware Info
 
-  // Add Storage
-  modular_server_.addFieldStorage(fields_);
-  modular_server_.addParameterStorage(parameters_);
-  modular_server_.addMethodStorage(methods_);
+  // Add Firmware
+  modular_server_.addFirmware(constants::firmware_info,
+                              fields_,
+                              parameters_,
+                              methods_);
 
   // Fields
+  modular_server_.setFieldDefaultValue(h_bridge_controller::constants::polarity_reversed_field_name,constants::polarity_reversed_default);
+
+  modular_server_.setFieldDefaultValue(h_bridge_controller::constants::channels_enabled_field_name,constants::channels_enabled_default);
+
   modular_server::Field & flipper_delay_field = modular_server_.createField(constants::flipper_delay_field_name,constants::flipper_delay_default);
   flipper_delay_field.setRange(constants::flipper_delay_min,constants::flipper_delay_max);
   flipper_delay_field.setUnits(h_bridge_controller::constants::ms_unit);

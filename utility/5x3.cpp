@@ -21,6 +21,10 @@ const size_t enable_increment_pin = 5;
 // Units
 
 // Fields
+const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT] = {false,true,false,false};
+
+const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT] = {true,true,false,false};
+
 
 // Parameters
 

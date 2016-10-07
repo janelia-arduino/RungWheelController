@@ -26,6 +26,9 @@ extern const size_t enable_increment_pin;
 
 // Fields
 // Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+extern const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT];
+
+extern const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT];
 
 // Parameters
 
