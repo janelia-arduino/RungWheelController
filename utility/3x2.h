@@ -35,6 +35,8 @@ extern const bool channels_enabled_default[h_bridge_controller::constants::CHANN
 
 // Methods
 
+// Interrupts
+
 // Errors
 }
 }

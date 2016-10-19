@@ -30,6 +30,8 @@ const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUN
 
 // Methods
 
+// Interrupts
+
 // Errors
 }
 }

@@ -52,7 +52,8 @@ void RungWheelController::setup()
   modular_server_.addFirmware(constants::firmware_info,
                               fields_,
                               parameters_,
-                              methods_);
+                              methods_,
+                              interrupts_);
 
   // Fields
   modular_server_.field(h_bridge_controller::constants::polarity_reversed_field_name).setDefaultValue(constants::polarity_reversed_default);
@@ -83,6 +84,12 @@ void RungWheelController::setup()
   // Parameters
 
   // Methods
+
+  // Interrupts
+  modular_server::Interrupt & flip_interrupt = modular_server_.createInterrupt(constants::flip_interrupt_name);
+  flip_interrupt.addField(rung_up_count_lower_field);
+  flip_interrupt.addField(rung_up_count_upper_field);
+  flip_interrupt.addField(rung_down_count_field);
 
 }
 

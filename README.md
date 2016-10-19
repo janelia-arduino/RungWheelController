@@ -26,6 +26,9 @@ License:
       "rung_up_count_lower",
       "rung_up_count_upper",
       "rung_down_count"
+    ],
+    "interrupts":[
+      "flip"
     ]
   }
 }

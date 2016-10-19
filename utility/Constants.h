@@ -19,6 +19,7 @@ namespace constants
 enum{FIELD_COUNT_MAX=6};
 enum{PARAMETER_COUNT_MAX=1};
 enum{METHOD_COUNT_MAX=1};
+enum{INTERRUPT_COUNT_MAX=1};
 
 extern ConstantString device_name;
 
@@ -62,6 +63,9 @@ extern const long rung_down_count_default;
 // Parameters
 
 // Methods
+
+// Interrupts
+extern ConstantString flip_interrupt_name;
 
 // Errors
 }

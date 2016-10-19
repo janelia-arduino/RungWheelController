@@ -45,6 +45,7 @@ private:
   modular_server::Field fields_[rung_wheel_controller::constants::FIELD_COUNT_MAX];
   modular_server::Parameter parameters_[rung_wheel_controller::constants::PARAMETER_COUNT_MAX];
   modular_server::Method methods_[rung_wheel_controller::constants::METHOD_COUNT_MAX];
+  modular_server::Interrupt interrupts_[modular_device::constants::INTERRUPT_COUNT_MAX];
 
   volatile bool flipping_;
   volatile bool flipping_enabled_;
