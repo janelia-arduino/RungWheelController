@@ -36,7 +36,7 @@ class RungWheelController : public HBridgeController
 public:
   RungWheelController();
   virtual void setup();
-  void flip(const h_bridge_controller::constants::Polarity polarity);
+  void flip(const ConstantString * const polarity_ptr);
 
   // Callbacks
   virtual void stopPwmCallback(int index);

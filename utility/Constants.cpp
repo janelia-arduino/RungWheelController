@@ -51,8 +51,8 @@ CONSTANT_STRING(rung_down_count_field_name,"rung_down_count");
 const long rung_down_count_default = 1;
 
 const uint32_t flipper_channels = B11;
-const h_bridge_controller::constants::Polarity polarity_up =  h_bridge_controller::constants::POSITIVE;
-const h_bridge_controller::constants::Polarity polarity_down =  h_bridge_controller::constants::NEGATIVE;
+const ConstantString * const polarity_up_ptr =  &h_bridge_controller::constants::polarity_positive;
+const ConstantString * const polarity_down_ptr =  &h_bridge_controller::constants::polarity_negative;
 
 // Units
 

@@ -86,7 +86,7 @@ void RungWheelController::setup()
 
 }
 
-void RungWheelController::flip(const h_bridge_controller::constants::Polarity polarity)
+void RungWheelController::flip(const ConstantString * const polarity_ptr)
 {
   if (!flipping_ && flipping_enabled_)
   {
@@ -98,7 +98,7 @@ void RungWheelController::flip(const h_bridge_controller::constants::Polarity po
     long flipper_on_duration;
     modular_server_.field(constants::flipper_on_duration_field_name).getValue(flipper_on_duration);
     addPwm(constants::flipper_channels,
-           polarity,
+           polarity_ptr,
            flipper_delay,
            flipper_period,
            flipper_on_duration,
@@ -158,12 +158,12 @@ void RungWheelController::flipCallback()
     }
     if (flipper_is_up_ && (flipper_up_inc_ < flipper_up_count_))
     {
-      flip(constants::polarity_up);
+      flip(constants::polarity_up_ptr);
       ++flipper_up_inc_;
     }
     else if (!flipper_is_up_ && (flipper_down_inc_ < rung_down_count))
     {
-      flip(constants::polarity_down);
+      flip(constants::polarity_down_ptr);
       ++flipper_down_inc_;
     }
   }
