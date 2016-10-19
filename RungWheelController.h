@@ -36,6 +36,10 @@ class RungWheelController : public HBridgeController
 public:
   RungWheelController();
   virtual void setup();
+  void flip(const h_bridge_controller::constants::Polarity polarity);
+
+  // Callbacks
+  virtual void stopPwmCallback(int index);
 
 private:
   modular_server::Field fields_[rung_wheel_controller::constants::FIELD_COUNT_MAX];
@@ -49,11 +53,8 @@ private:
   volatile bool flipper_is_up_;
   volatile long flipper_up_count_;
 
-  void flip(const h_bridge_controller::constants::Polarity polarity);
-
   // Callbacks
   void flipCallback();
-  virtual void stopPwmCallback(int index);
 
 };
 

@@ -55,9 +55,9 @@ void RungWheelController::setup()
                               methods_);
 
   // Fields
-  modular_server_.setFieldDefaultValue(h_bridge_controller::constants::polarity_reversed_field_name,constants::polarity_reversed_default);
+  modular_server_.field(h_bridge_controller::constants::polarity_reversed_field_name).setDefaultValue(constants::polarity_reversed_default);
 
-  modular_server_.setFieldDefaultValue(h_bridge_controller::constants::channels_enabled_field_name,constants::channels_enabled_default);
+  modular_server_.field(h_bridge_controller::constants::channels_enabled_field_name).setDefaultValue(constants::channels_enabled_default);
 
   modular_server::Field & flipper_delay_field = modular_server_.createField(constants::flipper_delay_field_name,constants::flipper_delay_default);
   flipper_delay_field.setRange(constants::flipper_delay_min,constants::flipper_delay_max);
@@ -92,14 +92,11 @@ void RungWheelController::flip(const h_bridge_controller::constants::Polarity po
   {
     flipping_ = true;
     long flipper_delay;
-    modular_server_.getFieldValue(constants::flipper_delay_field_name,
-                                  flipper_delay);
+    modular_server_.field(constants::flipper_delay_field_name).getValue(flipper_delay);
     long flipper_period;
-    modular_server_.getFieldValue(constants::flipper_period_field_name,
-                                  flipper_period);
+    modular_server_.field(constants::flipper_period_field_name).getValue(flipper_period);
     long flipper_on_duration;
-    modular_server_.getFieldValue(constants::flipper_on_duration_field_name,
-                                  flipper_on_duration);
+    modular_server_.field(constants::flipper_on_duration_field_name).getValue(flipper_on_duration);
     addPwm(constants::flipper_channels,
            polarity,
            flipper_delay,
@@ -109,36 +106,39 @@ void RungWheelController::flip(const h_bridge_controller::constants::Polarity po
   }
 }
 
+void RungWheelController::stopPwmCallback(int index)
+{
+  HBridgeController::stopPwmCallback(index);
+  flipping_ = false;
+}
+
 // Callbacks must be non-blocking (avoid 'delay')
 //
-// modular_server_.getParameterValue must be cast to either:
-// const char *
-// long
-// double
+// modular_server_.parameter(parameter_name).getValue(value) value type must be either:
+// fixed-point number (int, long, etc.)
+// floating-point number (float, double)
 // bool
-// ArduinoJson::JsonArray &
-// ArduinoJson::JsonObject &
+// const char *
+// ArduinoJson::JsonArray *
+// ArduinoJson::JsonObject *
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
 //
-// modular_server_.getFieldValue type must match the field default type
-// modular_server_.setFieldValue type must match the field default type
-// modular_server_.getFieldElementValue type must match the field array element default type
-// modular_server_.setFieldElementValue type must match the field array element default type
+// modular_server_.field(field_name).getValue(value) value type must match the field default type
+// modular_server_.field(field_name).setValue(value) value type must match the field default type
+// modular_server_.field(field_name).getElementValue(value) value type must match the field array element default type
+// modular_server_.field(field_name).setElementValue(value) value type must match the field array element default type
 
 void RungWheelController::flipCallback()
 {
   if (!flipping_ && flipping_enabled_)
   {
     long rung_up_count_lower;
-    modular_server_.getFieldValue(constants::rung_up_count_lower_field_name,
-                                  rung_up_count_lower);
+    modular_server_.field(constants::rung_up_count_lower_field_name).getValue(rung_up_count_lower);
     long rung_up_count_upper;
-    modular_server_.getFieldValue(constants::rung_up_count_upper_field_name,
-                                  rung_up_count_upper);
+    modular_server_.field(constants::rung_up_count_upper_field_name).getValue(rung_up_count_upper);
     long rung_down_count;
-    modular_server_.getFieldValue(constants::rung_down_count_field_name,
-                                  rung_down_count);
+    modular_server_.field(constants::rung_down_count_field_name).getValue(rung_down_count);
     if (flipper_is_up_ && (flipper_up_inc_ == flipper_up_count_))
     {
       if (rung_down_count > 0)
@@ -153,7 +153,6 @@ void RungWheelController::flipCallback()
       {
         flipper_is_up_ = true;
         flipper_up_count_ = random(rung_up_count_lower,rung_up_count_upper);
-        Serial << flipper_up_count_ << "\n";
       }
       flipper_down_inc_ = 0;
     }
@@ -161,19 +160,11 @@ void RungWheelController::flipCallback()
     {
       flip(constants::polarity_up);
       ++flipper_up_inc_;
-      Serial << "u\n";
     }
     else if (!flipper_is_up_ && (flipper_down_inc_ < rung_down_count))
     {
       flip(constants::polarity_down);
       ++flipper_down_inc_;
-      Serial << "d\n";
     }
   }
-}
-
-void RungWheelController::stopPwmCallback(int index)
-{
-  HBridgeController::stopPwmCallback(index);
-  flipping_ = false;
 }
