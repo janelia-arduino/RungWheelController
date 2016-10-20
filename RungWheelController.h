@@ -38,14 +38,14 @@ public:
   virtual void setup();
   void flip(const ConstantString * const polarity_ptr);
 
-  // Callbacks
-  virtual void stopPwmCallback(int index);
+  // Handlers
+  virtual void stopPwmHandler(int index);
 
 private:
   modular_server::Field fields_[rung_wheel_controller::constants::FIELD_COUNT_MAX];
   modular_server::Parameter parameters_[rung_wheel_controller::constants::PARAMETER_COUNT_MAX];
   modular_server::Method methods_[rung_wheel_controller::constants::METHOD_COUNT_MAX];
-  modular_server::Interrupt interrupts_[modular_device::constants::INTERRUPT_COUNT_MAX];
+  modular_server::Callback callbacks_[modular_device::constants::CALLBACK_COUNT_MAX];
 
   volatile bool flipping_;
   volatile bool flipping_enabled_;
@@ -54,8 +54,8 @@ private:
   volatile bool flipper_is_up_;
   volatile long flipper_up_count_;
 
-  // Callbacks
-  void flipCallback();
+  // Handlers
+  void flipHandler();
 
 };
 

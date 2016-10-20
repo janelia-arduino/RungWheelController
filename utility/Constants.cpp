@@ -62,8 +62,8 @@ const ConstantString * const polarity_down_ptr =  &h_bridge_controller::constant
 
 // Methods
 
-// Interrupts
-CONSTANT_STRING(flip_interrupt_name,"flip");
+// Callbacks
+CONSTANT_STRING(flip_callback_name,"flip");
 
 // Errors
 }

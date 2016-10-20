@@ -32,7 +32,7 @@ void RungWheelController::setup()
   pinMode(constants::enable_increment_pin,INPUT_PULLUP);
 
   // Interrupt Setup
-  FunctorCallbacks::Callback callback = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipCallback));
+  FunctorCallbacks::Callback callback = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipHandler));
   if (callback)
   {
     for (int digital_input=0; digital_input<constants::DIGITAL_INPUT_COUNT; ++digital_input)
@@ -53,7 +53,7 @@ void RungWheelController::setup()
                               fields_,
                               parameters_,
                               methods_,
-                              interrupts_);
+                              callbacks_);
 
   // Fields
   modular_server_.field(h_bridge_controller::constants::polarity_reversed_field_name).setDefaultValue(constants::polarity_reversed_default);
@@ -85,11 +85,11 @@ void RungWheelController::setup()
 
   // Methods
 
-  // Interrupts
-  modular_server::Interrupt & flip_interrupt = modular_server_.createInterrupt(constants::flip_interrupt_name);
-  flip_interrupt.addField(rung_up_count_lower_field);
-  flip_interrupt.addField(rung_up_count_upper_field);
-  flip_interrupt.addField(rung_down_count_field);
+  // Callbacks
+  modular_server::Callback & flip_callback = modular_server_.createCallback(constants::flip_callback_name);
+  flip_callback.addField(rung_up_count_lower_field);
+  flip_callback.addField(rung_up_count_upper_field);
+  flip_callback.addField(rung_down_count_field);
 
 }
 
@@ -113,13 +113,13 @@ void RungWheelController::flip(const ConstantString * const polarity_ptr)
   }
 }
 
-void RungWheelController::stopPwmCallback(int index)
+void RungWheelController::stopPwmHandler(int index)
 {
-  HBridgeController::stopPwmCallback(index);
+  HBridgeController::stopPwmHandler(index);
   flipping_ = false;
 }
 
-// Callbacks must be non-blocking (avoid 'delay')
+// Handlers must be non-blocking (avoid 'delay')
 //
 // modular_server_.parameter(parameter_name).getValue(value) value type must be either:
 // fixed-point number (int, long, etc.)
@@ -136,7 +136,7 @@ void RungWheelController::stopPwmCallback(int index)
 // modular_server_.field(field_name).getElementValue(value) value type must match the field array element default type
 // modular_server_.field(field_name).setElementValue(value) value type must match the field array element default type
 
-void RungWheelController::flipCallback()
+void RungWheelController::flipHandler()
 {
   if (!flipping_ && flipping_enabled_)
   {
