@@ -61,8 +61,13 @@ const ConstantString * const polarity_down_ptr =  &h_bridge_controller::constant
 // Parameters
 
 // Methods
+CONSTANT_STRING(flip_enabled_method_name,"flipEnabled");
 
 // Callbacks
+CONSTANT_STRING(enable_flip_callback_name,"enableFlip");
+
+CONSTANT_STRING(disable_flip_callback_name,"disableFlip");
+
 CONSTANT_STRING(flip_callback_name,"flip");
 
 // Errors

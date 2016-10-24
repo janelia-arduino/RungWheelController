@@ -14,9 +14,7 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
-const size_t di_pins[DIGITAL_INPUT_COUNT] = {21,20};
-
-const size_t enable_increment_pin = 5;
+const size_t di_pins[DIGITAL_INPUT_COUNT] = {21,20,2};
 
 // Units
 

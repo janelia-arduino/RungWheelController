@@ -63,8 +63,13 @@ extern const long rung_down_count_default;
 // Parameters
 
 // Methods
+extern ConstantString flip_enabled_method_name;
 
 // Callbacks
+extern ConstantString enable_flip_callback_name;
+
+extern ConstantString disable_flip_callback_name;
+
 extern ConstantString flip_callback_name;
 
 // Errors

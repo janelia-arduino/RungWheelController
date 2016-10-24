@@ -21,7 +21,7 @@ void RungWheelController::setup()
 
   // Variable Setup
   flipping_ = false;
-  flipping_enabled_ = true;
+  flip_enabled_ = true;
 
   // Pin Setup
   for (int digital_input=0; digital_input<constants::DIGITAL_INPUT_COUNT; ++digital_input)
@@ -29,19 +29,27 @@ void RungWheelController::setup()
     pinMode(constants::di_pins[digital_input],INPUT_PULLUP);
   }
 
-  pinMode(constants::enable_increment_pin,INPUT_PULLUP);
-
   // Interrupt Setup
-  FunctorCallbacks::Callback callback = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipHandler));
-  if (callback)
+  FunctorCallbacks::Callback flip = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipHandler));
+  if (flip)
   {
-    for (int digital_input=0; digital_input<constants::DIGITAL_INPUT_COUNT; ++digital_input)
+    for (int flip_input=0; flip_input<constants::FLIP_INPUT_COUNT; ++flip_input)
     {
       noInterrupts();
-      attachInterrupt(digitalPinToInterrupt(constants::di_pins[digital_input]),callback,FALLING);
+      attachInterrupt(digitalPinToInterrupt(constants::di_pins[flip_input]),flip,FALLING);
       interrupts();
     }
   }
+
+  // FunctorCallbacks::Callback enable = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::enableFlipHandler));
+  // FunctorCallbacks::Callback disable = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::disableFlipHandler));
+  // if (enable)
+  // {
+  //   noInterrupts();
+  //   attachInterrupt(digitalPinToInterrupt(constants::di_pins[constants::ENABLE_DISABLE_INPUT]),enable,RISING);
+  //   attachInterrupt(digitalPinToInterrupt(constants::di_pins[constants::ENABLE_DISABLE_INPUT]),disable,FALLING);
+  //   interrupts();
+  // }
 
   // Set Device ID
   modular_server_.setDeviceName(constants::device_name);
@@ -84,6 +92,9 @@ void RungWheelController::setup()
   // Parameters
 
   // Methods
+  modular_server::Method & flip_enabled_method = modular_server_.createMethod(constants::flip_enabled_method_name);
+  flip_enabled_method.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipEnabledHandler));
+  flip_enabled_method.setReturnTypeBool();
 
   // Callbacks
   modular_server::Callback & flip_callback = modular_server_.createCallback(constants::flip_callback_name);
@@ -91,11 +102,33 @@ void RungWheelController::setup()
   flip_callback.addField(rung_up_count_upper_field);
   flip_callback.addField(rung_down_count_field);
 
+  // modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
+  // enable_flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::enableFlipHandler));
+
+  // modular_server::Callback & disable_flip_callback = modular_server_.createCallback(constants::disable_flip_callback_name);
+  // disable_flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::disableFlipHandler));
+
+}
+
+void RungWheelController::update()
+{
+  // Parent Update
+  HBridgeController::update();
+
+  bool enable = (digitalRead(constants::di_pins[constants::ENABLE_DISABLE_INPUT]) == HIGH);
+  if (enable)
+  {
+    enableFlipHandler();
+  }
+  else
+  {
+    disableFlipHandler();
+  }
 }
 
 void RungWheelController::flip(const ConstantString * const polarity_ptr)
 {
-  if (!flipping_ && flipping_enabled_)
+  if (!flipping_ && flip_enabled_)
   {
     flipping_ = true;
     long flipper_delay;
@@ -136,9 +169,34 @@ void RungWheelController::stopPwmHandler(int index)
 // modular_server_.field(field_name).getElementValue(value) value type must match the field array element default type
 // modular_server_.field(field_name).setElementValue(value) value type must match the field array element default type
 
+void RungWheelController::flipEnabledHandler()
+{
+  modular_server_.response().returnResult(flip_enabled_);
+}
+
+void RungWheelController::enableFlipHandler()
+{
+  if (!flip_enabled_)
+  {
+    noInterrupts();
+    flip_enabled_ = true;
+    interrupts();
+  }
+}
+
+void RungWheelController::disableFlipHandler()
+{
+  if (flip_enabled_)
+  {
+    noInterrupts();
+    flip_enabled_ = false;
+    interrupts();
+  }
+}
+
 void RungWheelController::flipHandler()
 {
-  if (!flipping_ && flipping_enabled_)
+  if (!flipping_ && flip_enabled_)
   {
     long rung_up_count_lower;
     modular_server_.field(constants::rung_up_count_lower_field_name).getValue(rung_up_count_lower);
