@@ -29,78 +29,62 @@ void RungWheelController::setup()
     pinMode(constants::di_pins[digital_input],INPUT_PULLUP);
   }
 
-  // Interrupt Setup
-  FunctorCallbacks::Callback flip = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipHandler));
-  if (flip)
-  {
-    for (int flip_input=0; flip_input<constants::FLIP_INPUT_COUNT; ++flip_input)
-    {
-      noInterrupts();
-      attachInterrupt(digitalPinToInterrupt(constants::di_pins[flip_input]),flip,FALLING);
-      interrupts();
-    }
-  }
-
-  // FunctorCallbacks::Callback enable = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::enableFlipHandler));
-  // FunctorCallbacks::Callback disable = FunctorCallbacks::add(makeFunctor((Functor0 *)0,*this,&RungWheelController::disableFlipHandler));
-  // if (enable)
-  // {
-  //   noInterrupts();
-  //   attachInterrupt(digitalPinToInterrupt(constants::di_pins[constants::ENABLE_DISABLE_INPUT]),enable,RISING);
-  //   attachInterrupt(digitalPinToInterrupt(constants::di_pins[constants::ENABLE_DISABLE_INPUT]),disable,FALLING);
-  //   interrupts();
-  // }
-
   // Set Device ID
   modular_server_.setDeviceName(constants::device_name);
 
-  // Add Hardware Info
+  // Add Hardware
+
+  // Interrupts
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,
-                              fields_,
+                              properties_,
                               parameters_,
-                              methods_,
+                              functions_,
                               callbacks_);
 
-  // Fields
-  modular_server_.field(h_bridge_controller::constants::polarity_reversed_field_name).setDefaultValue(constants::polarity_reversed_default);
+  // Properties
+  modular_server_.property(h_bridge_controller::constants::polarity_reversed_property_name).setDefaultValue(constants::polarity_reversed_default);
 
-  modular_server_.field(h_bridge_controller::constants::channels_enabled_field_name).setDefaultValue(constants::channels_enabled_default);
+  modular_server_.property(h_bridge_controller::constants::channels_enabled_property_name).setDefaultValue(constants::channels_enabled_default);
 
-  modular_server::Field & flipper_delay_field = modular_server_.createField(constants::flipper_delay_field_name,constants::flipper_delay_default);
-  flipper_delay_field.setRange(constants::flipper_delay_min,constants::flipper_delay_max);
-  flipper_delay_field.setUnits(h_bridge_controller::constants::ms_unit);
+  modular_server::Property & flipper_delay_property = modular_server_.createProperty(constants::flipper_delay_property_name,constants::flipper_delay_default);
+  flipper_delay_property.setRange(constants::flipper_delay_min,constants::flipper_delay_max);
+  flipper_delay_property.setUnits(h_bridge_controller::constants::ms_unit);
 
-  modular_server::Field & flipper_period_field = modular_server_.createField(constants::flipper_period_field_name,constants::flipper_period_default);
-  flipper_period_field.setRange(constants::flipper_period_min,constants::flipper_period_max);
-  flipper_period_field.setUnits(h_bridge_controller::constants::ms_unit);
+  modular_server::Property & flipper_period_property = modular_server_.createProperty(constants::flipper_period_property_name,constants::flipper_period_default);
+  flipper_period_property.setRange(constants::flipper_period_min,constants::flipper_period_max);
+  flipper_period_property.setUnits(h_bridge_controller::constants::ms_unit);
 
-  modular_server::Field & flipper_on_duration_field = modular_server_.createField(constants::flipper_on_duration_field_name,constants::flipper_on_duration_default);
-  flipper_on_duration_field.setRange(constants::flipper_on_duration_min,constants::flipper_on_duration_max);
-  flipper_on_duration_field.setUnits(h_bridge_controller::constants::ms_unit);
+  modular_server::Property & flipper_on_duration_property = modular_server_.createProperty(constants::flipper_on_duration_property_name,constants::flipper_on_duration_default);
+  flipper_on_duration_property.setRange(constants::flipper_on_duration_min,constants::flipper_on_duration_max);
+  flipper_on_duration_property.setUnits(h_bridge_controller::constants::ms_unit);
 
-  modular_server::Field & rung_up_count_lower_field = modular_server_.createField(constants::rung_up_count_lower_field_name,constants::rung_up_count_lower_default);
-  rung_up_count_lower_field.setRange(constants::rung_count_min,constants::rung_count_max);
+  modular_server::Property & rung_up_count_lower_property = modular_server_.createProperty(constants::rung_up_count_lower_property_name,constants::rung_up_count_lower_default);
+  rung_up_count_lower_property.setRange(constants::rung_count_min,constants::rung_count_max);
 
-  modular_server::Field & rung_up_count_upper_field = modular_server_.createField(constants::rung_up_count_upper_field_name,constants::rung_up_count_upper_default);
-  rung_up_count_upper_field.setRange(constants::rung_count_min,constants::rung_count_max);
+  modular_server::Property & rung_up_count_upper_property = modular_server_.createProperty(constants::rung_up_count_upper_property_name,constants::rung_up_count_upper_default);
+  rung_up_count_upper_property.setRange(constants::rung_count_min,constants::rung_count_max);
 
-  modular_server::Field & rung_down_count_field = modular_server_.createField(constants::rung_down_count_field_name,constants::rung_down_count_default);
-  rung_down_count_field.setRange(constants::rung_count_min,constants::rung_count_max);
+  modular_server::Property & rung_down_count_property = modular_server_.createProperty(constants::rung_down_count_property_name,constants::rung_down_count_default);
+  rung_down_count_property.setRange(constants::rung_count_min,constants::rung_count_max);
 
   // Parameters
 
-  // Methods
-  modular_server::Method & flip_enabled_method = modular_server_.createMethod(constants::flip_enabled_method_name);
-  flip_enabled_method.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipEnabledHandler));
-  flip_enabled_method.setReturnTypeBool();
+  // Functions
+  modular_server::Function & flip_enabled_function = modular_server_.createFunction(constants::flip_enabled_function_name);
+  flip_enabled_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipEnabledHandler));
+  flip_enabled_function.setReturnTypeBool();
 
   // Callbacks
   modular_server::Callback & flip_callback = modular_server_.createCallback(constants::flip_callback_name);
-  flip_callback.addField(rung_up_count_lower_field);
-  flip_callback.addField(rung_up_count_upper_field);
-  flip_callback.addField(rung_down_count_field);
+  flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipHandler));
+  flip_callback.addProperty(rung_up_count_lower_property);
+  flip_callback.addProperty(rung_up_count_upper_property);
+  flip_callback.addProperty(rung_down_count_property);
+#if defined(__AVR_ATmega2560__)
+  flip_callback.attachTo(h_bridge_controller::constants::switch_0_interrupt_name,modular_server::interrupt::mode_falling);
+#endif
 
   // modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
   // enable_flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::enableFlipHandler));
@@ -132,11 +116,11 @@ void RungWheelController::flip(const ConstantString * const polarity_ptr)
   {
     flipping_ = true;
     long flipper_delay;
-    modular_server_.field(constants::flipper_delay_field_name).getValue(flipper_delay);
+    modular_server_.property(constants::flipper_delay_property_name).getValue(flipper_delay);
     long flipper_period;
-    modular_server_.field(constants::flipper_period_field_name).getValue(flipper_period);
+    modular_server_.property(constants::flipper_period_property_name).getValue(flipper_period);
     long flipper_on_duration;
-    modular_server_.field(constants::flipper_on_duration_field_name).getValue(flipper_on_duration);
+    modular_server_.property(constants::flipper_on_duration_property_name).getValue(flipper_on_duration);
     addPwm(constants::flipper_channels,
            polarity_ptr,
            flipper_delay,
@@ -164,10 +148,10 @@ void RungWheelController::stopPwmHandler(int index)
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
 //
-// modular_server_.field(field_name).getValue(value) value type must match the field default type
-// modular_server_.field(field_name).setValue(value) value type must match the field default type
-// modular_server_.field(field_name).getElementValue(value) value type must match the field array element default type
-// modular_server_.field(field_name).setElementValue(value) value type must match the field array element default type
+// modular_server_.property(property_name).getValue(value) value type must match the property default type
+// modular_server_.property(property_name).setValue(value) value type must match the property default type
+// modular_server_.property(property_name).getElementValue(value) value type must match the property array element default type
+// modular_server_.property(property_name).setElementValue(value) value type must match the property array element default type
 
 void RungWheelController::flipEnabledHandler()
 {
@@ -199,11 +183,11 @@ void RungWheelController::flipHandler()
   if (!flipping_ && flip_enabled_)
   {
     long rung_up_count_lower;
-    modular_server_.field(constants::rung_up_count_lower_field_name).getValue(rung_up_count_lower);
+    modular_server_.property(constants::rung_up_count_lower_property_name).getValue(rung_up_count_lower);
     long rung_up_count_upper;
-    modular_server_.field(constants::rung_up_count_upper_field_name).getValue(rung_up_count_upper);
+    modular_server_.property(constants::rung_up_count_upper_property_name).getValue(rung_up_count_upper);
     long rung_down_count;
-    modular_server_.field(constants::rung_down_count_field_name).getValue(rung_down_count);
+    modular_server_.property(constants::rung_down_count_property_name).getValue(rung_down_count);
     if (flipper_is_up_ && (flipper_up_inc_ == flipper_up_count_))
     {
       if (rung_down_count > 0)

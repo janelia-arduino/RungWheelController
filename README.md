@@ -17,15 +17,17 @@ License:
   "id":"getApi",
   "result":{
     "firmware":["RungWheelController"],
-    "methods":[],
+    "functions":[
+      "flipEnabled"
+    ],
     "parameters":[],
-    "fields":[
-      "flipper_delay",
-      "flipper_period",
-      "flipper_on_duration",
-      "rung_up_count_lower",
-      "rung_up_count_upper",
-      "rung_down_count"
+    "properties":[
+      "flipperDelay",
+      "flipperPeriod",
+      "flipperOnDuration",
+      "rungUpCountLower",
+      "rungUpCountUpper",
+      "rungDownCount"
     ],
     "callbacks":[
       "flip"

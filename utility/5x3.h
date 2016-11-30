@@ -16,23 +16,24 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
-enum {DIGITAL_INPUT_COUNT=3};
-enum {FLIP_INPUT_COUNT=2};
-enum {ENABLE_DISABLE_INPUT=2};
+enum {DIGITAL_INPUT_COUNT=1};
+enum {ENABLE_DISABLE_INPUT=0};
 
 extern const size_t di_pins[DIGITAL_INPUT_COUNT];
 
+// Interrupts
+
 // Units
 
-// Fields
-// Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+// Properties
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
 extern const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT];
 
 extern const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT];
 
 // Parameters
 
-// Methods
+// Functions
 
 // Callbacks
 

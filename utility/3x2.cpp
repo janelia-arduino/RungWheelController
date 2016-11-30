@@ -14,11 +14,13 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
-const size_t di_pins[DIGITAL_INPUT_COUNT] = {21,20,2};
+const size_t di_pins[DIGITAL_INPUT_COUNT] = {2};
+
+// Interrupts
 
 // Units
 
-// Fields
+// Properties
 const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT] = {false,true};
 
 const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT] = {true,true};
@@ -26,7 +28,7 @@ const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUN
 
 // Parameters
 
-// Methods
+// Functions
 
 // Callbacks
 

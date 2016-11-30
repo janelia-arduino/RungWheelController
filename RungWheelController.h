@@ -19,9 +19,9 @@
 #include "ConstantVariable.h"
 #include "SavedVariable.h"
 #include "Functor.h"
-
 #include "IndexedContainer.h"
 #include "FunctorCallbacks.h"
+
 #include "EventController.h"
 
 #include "ModularServer.h"
@@ -43,10 +43,10 @@ public:
   virtual void stopPwmHandler(int index);
 
 private:
-  modular_server::Field fields_[rung_wheel_controller::constants::FIELD_COUNT_MAX];
+  modular_server::Property properties_[rung_wheel_controller::constants::PROPERTY_COUNT_MAX];
   modular_server::Parameter parameters_[rung_wheel_controller::constants::PARAMETER_COUNT_MAX];
-  modular_server::Method methods_[rung_wheel_controller::constants::METHOD_COUNT_MAX];
-  modular_server::Callback callbacks_[modular_device::constants::CALLBACK_COUNT_MAX];
+  modular_server::Function functions_[rung_wheel_controller::constants::FUNCTION_COUNT_MAX];
+  modular_server::Callback callbacks_[rung_wheel_controller::constants::CALLBACK_COUNT_MAX];
 
   volatile bool flipping_;
   volatile bool flip_enabled_;
