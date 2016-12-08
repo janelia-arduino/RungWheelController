@@ -78,7 +78,7 @@ void RungWheelController::setup()
 
   // Callbacks
   modular_server::Callback & flip_callback = modular_server_.createCallback(constants::flip_callback_name);
-  flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipHandler));
+  flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::flipHandler));
   flip_callback.addProperty(rung_up_count_lower_property);
   flip_callback.addProperty(rung_up_count_upper_property);
   flip_callback.addProperty(rung_down_count_property);
@@ -87,10 +87,10 @@ void RungWheelController::setup()
 #endif
 
   // modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
-  // enable_flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::enableFlipHandler));
+  // enable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::enableFlipHandler));
 
   // modular_server::Callback & disable_flip_callback = modular_server_.createCallback(constants::disable_flip_callback_name);
-  // disable_flip_callback.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::disableFlipHandler));
+  // disable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::disableFlipHandler));
 
 }
 
@@ -102,11 +102,11 @@ void RungWheelController::update()
   bool enable = (digitalRead(constants::di_pins[constants::ENABLE_DISABLE_INPUT]) == HIGH);
   if (enable)
   {
-    enableFlipHandler();
+    enableFlipHandler(NULL);
   }
   else
   {
-    disableFlipHandler();
+    disableFlipHandler(NULL);
   }
 }
 
@@ -158,7 +158,7 @@ void RungWheelController::flipEnabledHandler()
   modular_server_.response().returnResult(flip_enabled_);
 }
 
-void RungWheelController::enableFlipHandler()
+void RungWheelController::enableFlipHandler(modular_server::Interrupt * interrupt_ptr)
 {
   if (!flip_enabled_)
   {
@@ -168,7 +168,7 @@ void RungWheelController::enableFlipHandler()
   }
 }
 
-void RungWheelController::disableFlipHandler()
+void RungWheelController::disableFlipHandler(modular_server::Interrupt * interrupt_ptr)
 {
   if (flip_enabled_)
   {
@@ -178,7 +178,7 @@ void RungWheelController::disableFlipHandler()
   }
 }
 
-void RungWheelController::flipHandler()
+void RungWheelController::flipHandler(modular_server::Interrupt * interrupt_ptr)
 {
   if (!flipping_ && flip_enabled_)
   {

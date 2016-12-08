@@ -57,9 +57,9 @@ private:
 
   // Handlers
   void flipEnabledHandler();
-  void enableFlipHandler();
-  void disableFlipHandler();
-  void flipHandler();
+  void enableFlipHandler(modular_server::Interrupt * interrupt_ptr);
+  void disableFlipHandler(modular_server::Interrupt * interrupt_ptr);
+  void flipHandler(modular_server::Interrupt * interrupt_ptr);
 
 };
 
