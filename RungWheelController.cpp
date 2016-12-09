@@ -130,12 +130,6 @@ void RungWheelController::flip(const ConstantString * const polarity_ptr)
   }
 }
 
-void RungWheelController::stopPwmHandler(int index)
-{
-  HBridgeController::stopPwmHandler(index);
-  flipping_ = false;
-}
-
 // Handlers must be non-blocking (avoid 'delay')
 //
 // modular_server_.parameter(parameter_name).getValue(value) value type must be either:
@@ -152,6 +146,12 @@ void RungWheelController::stopPwmHandler(int index)
 // modular_server_.property(property_name).setValue(value) value type must match the property default type
 // modular_server_.property(property_name).getElementValue(value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(value) value type must match the property array element default type
+
+void RungWheelController::stopPwmHandler(int index)
+{
+  HBridgeController::stopPwmHandler(index);
+  flipping_ = false;
+}
 
 void RungWheelController::flipEnabledHandler()
 {
