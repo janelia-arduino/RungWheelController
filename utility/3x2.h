@@ -25,7 +25,7 @@ extern const size_t di_pins[DIGITAL_INPUT_COUNT];
 // Units
 
 // Properties
-// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
 extern const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT];
 
 extern const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT];

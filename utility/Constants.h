@@ -35,7 +35,7 @@ extern const ConstantString * const polarity_down_ptr;
 // Units
 
 // Properties
-// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
 extern ConstantString flipper_delay_property_name;
 extern const long flipper_delay_min;
 extern const long flipper_delay_max;
