@@ -37,7 +37,7 @@ public:
   RungWheelController();
   virtual void setup();
   virtual void update();
-  void flip(const ConstantString * const polarity_ptr);
+  void flip(const ConstantString & polarity);
 
   // Handlers
   virtual void stopPwmHandler(int index);

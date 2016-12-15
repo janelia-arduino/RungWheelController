@@ -110,7 +110,7 @@ void RungWheelController::update()
   }
 }
 
-void RungWheelController::flip(const ConstantString * const polarity_ptr)
+void RungWheelController::flip(const ConstantString & polarity)
 {
   if (!flipping_ && flip_enabled_)
   {
@@ -122,7 +122,7 @@ void RungWheelController::flip(const ConstantString * const polarity_ptr)
     long flipper_on_duration;
     modular_server_.property(constants::flipper_on_duration_property_name).getValue(flipper_on_duration);
     addPwm(constants::flipper_channels,
-           polarity_ptr,
+           polarity,
            flipper_delay,
            flipper_period,
            flipper_on_duration,
@@ -207,12 +207,12 @@ void RungWheelController::flipHandler(modular_server::Interrupt * interrupt_ptr)
     }
     if (flipper_is_up_ && (flipper_up_inc_ < flipper_up_count_))
     {
-      flip(constants::polarity_up_ptr);
+      flip(*constants::polarity_up_ptr);
       ++flipper_up_inc_;
     }
     else if (!flipper_is_up_ && (flipper_down_inc_ < rung_down_count))
     {
-      flip(constants::polarity_down_ptr);
+      flip(*constants::polarity_down_ptr);
       ++flipper_down_inc_;
     }
   }
