@@ -25,7 +25,7 @@
 #include "EventController.h"
 
 #include "ModularServer.h"
-#include "ModularDevice.h"
+#include "ModularDeviceBase.h"
 #include "HBridgeController.h"
 
 #include "utility/Constants.h"
