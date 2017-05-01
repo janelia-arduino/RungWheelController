@@ -36,8 +36,8 @@ class RungWheelController : public HBridgeController
 public:
   RungWheelController();
   virtual void setup();
-  virtual void update();
   void flip(const ConstantString & polarity);
+  bool flipEnabled();
 
   // Handlers
   virtual void stopPwmHandler(int index);

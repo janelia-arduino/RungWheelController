@@ -14,8 +14,6 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
-const size_t di_pins[DIGITAL_INPUT_COUNT] = {2};
-
 // Interrupts
 
 // Units

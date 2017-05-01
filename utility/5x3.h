@@ -10,17 +10,38 @@
 #include "Constants.h"
 
 
-#if defined(__AVR_ATmega2560__)
+#if defined(__MK64FX512__)
 
 namespace rung_wheel_controller
 {
 namespace constants
 {
-enum {DIGITAL_INPUT_COUNT=1};
-enum {ENABLE_DISABLE_INPUT=0};
+// Interrupts
 
-extern const size_t di_pins[DIGITAL_INPUT_COUNT];
+// Units
 
+// Properties
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
+extern const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT];
+
+extern const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT];
+
+// Parameters
+
+// Functions
+
+// Callbacks
+
+// Errors
+}
+}
+
+#elif defined(__AVR_ATmega2560__)
+
+namespace rung_wheel_controller
+{
+namespace constants
+{
 // Interrupts
 
 // Units
@@ -41,4 +62,5 @@ extern const bool channels_enabled_default[h_bridge_controller::constants::CHANN
 }
 }
 #endif
+
 #endif

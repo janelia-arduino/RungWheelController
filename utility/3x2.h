@@ -16,10 +16,6 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
-enum {DIGITAL_INPUT_COUNT=1};
-enum {ENABLE_DISABLE_INPUT=0};
-
-extern const size_t di_pins[DIGITAL_INPUT_COUNT];
 // Interrupts
 
 // Units

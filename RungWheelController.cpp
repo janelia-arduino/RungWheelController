@@ -24,10 +24,6 @@ void RungWheelController::setup()
   flip_enabled_ = true;
 
   // Pin Setup
-  for (int digital_input=0; digital_input<constants::DIGITAL_INPUT_COUNT; ++digital_input)
-  {
-    pinMode(constants::di_pins[digital_input],INPUT_PULLUP);
-  }
 
   // Set Device ID
   modular_server_.setDeviceName(constants::device_name);
@@ -82,32 +78,18 @@ void RungWheelController::setup()
   flip_callback.addProperty(rung_up_count_lower_property);
   flip_callback.addProperty(rung_up_count_upper_property);
   flip_callback.addProperty(rung_down_count_property);
-#if defined(__AVR_ATmega2560__)
+#if defined(__MK20DX256__) || defined(__MK64FX512__)
+  flip_callback.attachTo(modular_device_base::constants::bnc_a_interrupt_name,modular_server::interrupt::mode_falling);
+#elif defined(__AVR_ATmega2560__)
   flip_callback.attachTo(h_bridge_controller::constants::switch_0_interrupt_name,modular_server::interrupt::mode_falling);
 #endif
 
-  // modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
-  // enable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::enableFlipHandler));
+  modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
+  enable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::enableFlipHandler));
 
-  // modular_server::Callback & disable_flip_callback = modular_server_.createCallback(constants::disable_flip_callback_name);
-  // disable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::disableFlipHandler));
+  modular_server::Callback & disable_flip_callback = modular_server_.createCallback(constants::disable_flip_callback_name);
+  disable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::disableFlipHandler));
 
-}
-
-void RungWheelController::update()
-{
-  // Parent Update
-  HBridgeController::update();
-
-  bool enable = (digitalRead(constants::di_pins[constants::ENABLE_DISABLE_INPUT]) == HIGH);
-  if (enable)
-  {
-    enableFlipHandler(NULL);
-  }
-  else
-  {
-    disableFlipHandler(NULL);
-  }
 }
 
 void RungWheelController::flip(const ConstantString & polarity)
@@ -128,6 +110,11 @@ void RungWheelController::flip(const ConstantString & polarity)
            flipper_on_duration,
            1);
   }
+}
+
+bool RungWheelController::flipEnabled()
+{
+  return flip_enabled_;
 }
 
 // Handlers must be non-blocking (avoid 'delay')
@@ -155,7 +142,7 @@ void RungWheelController::stopPwmHandler(int index)
 
 void RungWheelController::flipEnabledHandler()
 {
-  modular_server_.response().returnResult(flip_enabled_);
+  modular_server_.response().returnResult(flipEnabled());
 }
 
 void RungWheelController::enableFlipHandler(modular_server::Interrupt * interrupt_ptr)
