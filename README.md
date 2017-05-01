@@ -36,7 +36,9 @@ License:
       "rungDownCount"
     ],
     "callbacks":[
-      "flip"
+      "flip",
+      "enableFlip",
+      "disableFlip"
     ]
   }
 }
