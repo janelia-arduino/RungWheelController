@@ -8,7 +8,13 @@ License:
 
     BSD
 
-[Examples](./examples)
+## Inherits
+
+[ModularServer](https://github.com/janelia-arduino/ModularServer)
+
+[ModularDeviceBase](https://github.com/janelia-arduino/ModularDeviceBase)
+
+[HBridgeController](https://github.com/janelia-arduino/HBridgeController)
 
 ## API
 
