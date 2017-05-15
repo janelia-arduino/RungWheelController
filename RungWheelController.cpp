@@ -46,15 +46,15 @@ void RungWheelController::setup()
 
   modular_server::Property & flipper_delay_property = modular_server_.createProperty(constants::flipper_delay_property_name,constants::flipper_delay_default);
   flipper_delay_property.setRange(constants::flipper_delay_min,constants::flipper_delay_max);
-  flipper_delay_property.setUnits(h_bridge_controller::constants::ms_unit);
+  flipper_delay_property.setUnits(h_bridge_controller::constants::ms_units);
 
   modular_server::Property & flipper_period_property = modular_server_.createProperty(constants::flipper_period_property_name,constants::flipper_period_default);
   flipper_period_property.setRange(constants::flipper_period_min,constants::flipper_period_max);
-  flipper_period_property.setUnits(h_bridge_controller::constants::ms_unit);
+  flipper_period_property.setUnits(h_bridge_controller::constants::ms_units);
 
   modular_server::Property & flipper_on_duration_property = modular_server_.createProperty(constants::flipper_on_duration_property_name,constants::flipper_on_duration_default);
   flipper_on_duration_property.setRange(constants::flipper_on_duration_min,constants::flipper_on_duration_max);
-  flipper_on_duration_property.setUnits(h_bridge_controller::constants::ms_unit);
+  flipper_on_duration_property.setUnits(h_bridge_controller::constants::ms_units);
 
   modular_server::Property & rung_up_count_lower_property = modular_server_.createProperty(constants::rung_up_count_lower_property_name,constants::rung_up_count_lower_default);
   rung_up_count_lower_property.setRange(constants::rung_count_min,constants::rung_count_max);
@@ -70,7 +70,7 @@ void RungWheelController::setup()
   // Functions
   modular_server::Function & flip_enabled_function = modular_server_.createFunction(constants::flip_enabled_function_name);
   flip_enabled_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipEnabledHandler));
-  flip_enabled_function.setReturnTypeBool();
+  flip_enabled_function.setResultTypeBool();
 
   // Callbacks
   modular_server::Callback & flip_callback = modular_server_.createCallback(constants::flip_callback_name);
