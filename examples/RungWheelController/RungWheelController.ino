@@ -14,6 +14,8 @@
 #include "FunctorCallbacks.h"
 
 #include "EventController.h"
+#include "OpticalSwitchInterface.h"
+#include "EncoderInterfaceSimple.h"
 
 #include "ModularClient.h"
 

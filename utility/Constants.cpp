@@ -62,6 +62,7 @@ const long rung_down_count_default = 1;
 // Parameters
 
 // Functions
+CONSTANT_STRING(set_client_property_values_function_name,"setClientPropertyValues");
 CONSTANT_STRING(flip_enabled_function_name,"flipEnabled");
 
 // Callbacks

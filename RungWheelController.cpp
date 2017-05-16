@@ -23,6 +23,10 @@ void RungWheelController::setup()
   flipping_ = false;
   flip_enabled_ = true;
 
+  // Clients Setup
+  optical_switch_interface_ptr_ = &(createClientAtAddress(constants::optical_switch_interface_address));
+  encoder_interface_simple_ptr_ = &(createClientAtAddress(constants::encoder_interface_simple_address));
+
   // Pin Setup
 
   // Set Device ID
@@ -68,6 +72,9 @@ void RungWheelController::setup()
   // Parameters
 
   // Functions
+  modular_server::Function & set_client_property_values_function = modular_server_.createFunction(constants::set_client_property_values_function_name);
+  set_client_property_values_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::setClientPropertyValuesHandler));
+
   modular_server::Function & flip_enabled_function = modular_server_.createFunction(constants::flip_enabled_function_name);
   flip_enabled_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&RungWheelController::flipEnabledHandler));
   flip_enabled_function.setResultTypeBool();
@@ -138,6 +145,13 @@ void RungWheelController::stopPwmHandler(int index)
 {
   HBridgeController::stopPwmHandler(index);
   flipping_ = false;
+}
+
+void RungWheelController::setClientPropertyValuesHandler()
+{
+  optical_switch_interface_ptr_->call(modular_server::constants::set_properties_to_defaults_function_name);
+
+  encoder_interface_simple_ptr_->call(modular_server::constants::set_properties_to_defaults_function_name);
 }
 
 void RungWheelController::flipEnabledHandler()

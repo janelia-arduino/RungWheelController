@@ -25,6 +25,8 @@
 #include "EventController.h"
 
 #include "ModularClient.h"
+#include "OpticalSwitchInterface.h"
+#include "EncoderInterfaceSimple.h"
 
 #include "ModularServer.h"
 #include "ModularDeviceBase.h"
@@ -57,7 +59,11 @@ private:
   volatile bool flipper_is_up_;
   volatile long flipper_up_count_;
 
+  ModularClient * optical_switch_interface_ptr_;
+  ModularClient * encoder_interface_simple_ptr_;
+
   // Handlers
+  void setClientPropertyValuesHandler();
   void flipEnabledHandler();
   void enableFlipHandler(modular_server::Interrupt * interrupt_ptr);
   void disableFlipHandler(modular_server::Interrupt * interrupt_ptr);
