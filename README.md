@@ -35,12 +35,35 @@ License:
 ## API
 
 ```json
+{
+  "id":"getApi",
+  "result":{
+    "firmware":["RungWheelController"],
+    "functions":[
+      "setClientPropertyValues",
+      "flipEnabled"
+    ],
+    "parameters":[],
+    "properties":[
+      "flipperDelay",
+      "flipperPeriod",
+      "flipperOnDuration",
+      "rungUpCountLower",
+      "rungUpCountUpper",
+      "rungDownCount"
+    ],
+    "callbacks":[
+      "flip",
+      "enableFlip",
+      "disableFlip"
+    ]
+  }
+}
 ```
 
 ## API Verbose
 
-```json
-```
+[API Verbose](./api.json)
 
 ## More Detailed Modular Device Information
 
