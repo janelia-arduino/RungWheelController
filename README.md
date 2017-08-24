@@ -32,18 +32,18 @@ License:
 
 [encoder_interface_simple](https://github.com/janelia-modular-devices/encoder_interface_simple.git)
 
-## API
+## API NAMES
 
 ```json
 {
   "id":"getApi",
   "result":{
     "firmware":["RungWheelController"],
+    "verbosity":"NAMES",
     "functions":[
       "setClientPropertyValues",
       "flipEnabled"
     ],
-    "parameters":[],
     "properties":[
       "flipperDelay",
       "flipperPeriod",
@@ -61,9 +61,9 @@ License:
 }
 ```
 
-## API Verbose
+## API GENERAL
 
-[API Verbose](./api/)
+[API GENERAL](./api/)
 
 ## More Detailed Modular Device Information
 

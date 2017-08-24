@@ -1,101 +1,252 @@
 {
-  "id":"getApiVerbose",
+  "id":"getApi",
   "result":{
     "firmware":["RungWheelController"],
+    "verbosity":"GENERAL",
     "functions":[
       {
-        "name":"setClientPropertyValues",
-        "parameters":[]
+        "name":"setClientPropertyValues"
       },
       {
         "name":"flipEnabled",
-        "parameters":[],
         "result_info":{
           "type":"bool"
         }
       }
     ],
-    "parameters":[],
     "properties":[
       {
         "name":"flipperDelay",
         "type":"long",
-        "units":"ms",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"long"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"long"
+          }
         ]
       },
       {
         "name":"flipperPeriod",
         "type":"long",
-        "units":"ms",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"long"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"long"
+          }
         ]
       },
       {
         "name":"flipperOnDuration",
         "type":"long",
-        "units":"ms",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"long"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"long"
+          }
         ]
       },
       {
         "name":"rungUpCountLower",
         "type":"long",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"long"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"long"
+          }
         ]
       },
       {
         "name":"rungUpCountUpper",
         "type":"long",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"long"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"long"
+          }
         ]
       },
       {
         "name":"rungDownCount",
         "type":"long",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"long"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"long"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"long"
+          }
         ]
       }
     ],
@@ -108,42 +259,103 @@
           "rungDownCount"
         ],
         "functions":[
-          "trigger",
-          "attachTo",
-          "detachFrom",
-          "detachFromAll"
+          {
+            "name":"trigger"
+          },
+          {
+            "name":"attachTo",
+            "parameters":[
+              "interrupt",
+              "mode"
+            ]
+          },
+          {
+            "name":"detachFrom",
+            "parameters":[
+              "interrupt"
+            ]
+          },
+          {
+            "name":"detachFromAll"
+          }
         ],
         "parameters":[
-          "interrupt",
-          "mode"
+          {
+            "name":"interrupt",
+            "type":"string"
+          },
+          {
+            "name":"mode",
+            "type":"string"
+          }
         ]
       },
       {
         "name":"enableFlip",
-        "properties":[],
         "functions":[
-          "trigger",
-          "attachTo",
-          "detachFrom",
-          "detachFromAll"
+          {
+            "name":"trigger"
+          },
+          {
+            "name":"attachTo",
+            "parameters":[
+              "interrupt",
+              "mode"
+            ]
+          },
+          {
+            "name":"detachFrom",
+            "parameters":[
+              "interrupt"
+            ]
+          },
+          {
+            "name":"detachFromAll"
+          }
         ],
         "parameters":[
-          "interrupt",
-          "mode"
+          {
+            "name":"interrupt",
+            "type":"string"
+          },
+          {
+            "name":"mode",
+            "type":"string"
+          }
         ]
       },
       {
         "name":"disableFlip",
-        "properties":[],
         "functions":[
-          "trigger",
-          "attachTo",
-          "detachFrom",
-          "detachFromAll"
+          {
+            "name":"trigger"
+          },
+          {
+            "name":"attachTo",
+            "parameters":[
+              "interrupt",
+              "mode"
+            ]
+          },
+          {
+            "name":"detachFrom",
+            "parameters":[
+              "interrupt"
+            ]
+          },
+          {
+            "name":"detachFromAll"
+          }
         ],
         "parameters":[
-          "interrupt",
-          "mode"
+          {
+            "name":"interrupt",
+            "type":"string"
+          },
+          {
+            "name":"mode",
+            "type":"string"
+          }
         ]
       }
     ]
