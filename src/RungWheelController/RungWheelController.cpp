@@ -5,7 +5,7 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "RungWheelController.h"
+#include "../RungWheelController.h"
 
 
 using namespace rung_wheel_controller;
