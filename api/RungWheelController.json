@@ -1,360 +1,362 @@
 {
-  "id":"getApi",
-  "result":{
-    "firmware":["RungWheelController"],
-    "verbosity":"GENERAL",
-    "functions":[
+  "id": "getApi",
+  "result": {
+    "firmware": [
+      "RungWheelController"
+    ],
+    "verbosity": "GENERAL",
+    "functions": [
       {
-        "name":"setClientPropertyValues"
+        "name": "setClientPropertyValues"
       },
       {
-        "name":"flipEnabled",
-        "result_info":{
-          "type":"bool"
+        "name": "flipEnabled",
+        "result_info": {
+          "type": "bool"
         }
       }
     ],
-    "properties":[
+    "properties": [
       {
-        "name":"flipperDelay",
-        "type":"long",
-        "functions":[
+        "name": "flipperDelay",
+        "type": "long",
+        "functions": [
           {
-            "name":"getValue",
-            "result_info":{
-              "type":"long"
+            "name": "getValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValue",
-            "parameters":[
+            "name": "setValue",
+            "parameters": [
               "value"
             ],
-            "result_info":{
-              "type":"long"
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"getDefaultValue",
-            "result_info":{
-              "type":"long"
+            "name": "getDefaultValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValueToDefault",
-            "result_info":{
-              "type":"long"
+            "name": "setValueToDefault",
+            "result_info": {
+              "type": "long"
             }
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"value",
-            "type":"long"
+            "name": "value",
+            "type": "long"
           }
         ]
       },
       {
-        "name":"flipperPeriod",
-        "type":"long",
-        "functions":[
+        "name": "flipperPeriod",
+        "type": "long",
+        "functions": [
           {
-            "name":"getValue",
-            "result_info":{
-              "type":"long"
+            "name": "getValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValue",
-            "parameters":[
+            "name": "setValue",
+            "parameters": [
               "value"
             ],
-            "result_info":{
-              "type":"long"
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"getDefaultValue",
-            "result_info":{
-              "type":"long"
+            "name": "getDefaultValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValueToDefault",
-            "result_info":{
-              "type":"long"
+            "name": "setValueToDefault",
+            "result_info": {
+              "type": "long"
             }
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"value",
-            "type":"long"
+            "name": "value",
+            "type": "long"
           }
         ]
       },
       {
-        "name":"flipperOnDuration",
-        "type":"long",
-        "functions":[
+        "name": "flipperOnDuration",
+        "type": "long",
+        "functions": [
           {
-            "name":"getValue",
-            "result_info":{
-              "type":"long"
+            "name": "getValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValue",
-            "parameters":[
+            "name": "setValue",
+            "parameters": [
               "value"
             ],
-            "result_info":{
-              "type":"long"
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"getDefaultValue",
-            "result_info":{
-              "type":"long"
+            "name": "getDefaultValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValueToDefault",
-            "result_info":{
-              "type":"long"
+            "name": "setValueToDefault",
+            "result_info": {
+              "type": "long"
             }
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"value",
-            "type":"long"
+            "name": "value",
+            "type": "long"
           }
         ]
       },
       {
-        "name":"rungUpCountLower",
-        "type":"long",
-        "functions":[
+        "name": "rungUpCountLower",
+        "type": "long",
+        "functions": [
           {
-            "name":"getValue",
-            "result_info":{
-              "type":"long"
+            "name": "getValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValue",
-            "parameters":[
+            "name": "setValue",
+            "parameters": [
               "value"
             ],
-            "result_info":{
-              "type":"long"
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"getDefaultValue",
-            "result_info":{
-              "type":"long"
+            "name": "getDefaultValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValueToDefault",
-            "result_info":{
-              "type":"long"
+            "name": "setValueToDefault",
+            "result_info": {
+              "type": "long"
             }
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"value",
-            "type":"long"
+            "name": "value",
+            "type": "long"
           }
         ]
       },
       {
-        "name":"rungUpCountUpper",
-        "type":"long",
-        "functions":[
+        "name": "rungUpCountUpper",
+        "type": "long",
+        "functions": [
           {
-            "name":"getValue",
-            "result_info":{
-              "type":"long"
+            "name": "getValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValue",
-            "parameters":[
+            "name": "setValue",
+            "parameters": [
               "value"
             ],
-            "result_info":{
-              "type":"long"
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"getDefaultValue",
-            "result_info":{
-              "type":"long"
+            "name": "getDefaultValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValueToDefault",
-            "result_info":{
-              "type":"long"
+            "name": "setValueToDefault",
+            "result_info": {
+              "type": "long"
             }
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"value",
-            "type":"long"
+            "name": "value",
+            "type": "long"
           }
         ]
       },
       {
-        "name":"rungDownCount",
-        "type":"long",
-        "functions":[
+        "name": "rungDownCount",
+        "type": "long",
+        "functions": [
           {
-            "name":"getValue",
-            "result_info":{
-              "type":"long"
+            "name": "getValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValue",
-            "parameters":[
+            "name": "setValue",
+            "parameters": [
               "value"
             ],
-            "result_info":{
-              "type":"long"
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"getDefaultValue",
-            "result_info":{
-              "type":"long"
+            "name": "getDefaultValue",
+            "result_info": {
+              "type": "long"
             }
           },
           {
-            "name":"setValueToDefault",
-            "result_info":{
-              "type":"long"
+            "name": "setValueToDefault",
+            "result_info": {
+              "type": "long"
             }
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"value",
-            "type":"long"
+            "name": "value",
+            "type": "long"
           }
         ]
       }
     ],
-    "callbacks":[
+    "callbacks": [
       {
-        "name":"flip",
-        "properties":[
+        "name": "flip",
+        "properties": [
           "rungUpCountLower",
           "rungUpCountUpper",
           "rungDownCount"
         ],
-        "functions":[
+        "functions": [
           {
-            "name":"trigger"
+            "name": "trigger"
           },
           {
-            "name":"attachTo",
-            "parameters":[
+            "name": "attachTo",
+            "parameters": [
               "interrupt",
               "mode"
             ]
           },
           {
-            "name":"detachFrom",
-            "parameters":[
+            "name": "detachFrom",
+            "parameters": [
               "interrupt"
             ]
           },
           {
-            "name":"detachFromAll"
+            "name": "detachFromAll"
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"interrupt",
-            "type":"string"
+            "name": "interrupt",
+            "type": "string"
           },
           {
-            "name":"mode",
-            "type":"string"
+            "name": "mode",
+            "type": "string"
           }
         ]
       },
       {
-        "name":"enableFlip",
-        "functions":[
+        "name": "enableFlip",
+        "functions": [
           {
-            "name":"trigger"
+            "name": "trigger"
           },
           {
-            "name":"attachTo",
-            "parameters":[
+            "name": "attachTo",
+            "parameters": [
               "interrupt",
               "mode"
             ]
           },
           {
-            "name":"detachFrom",
-            "parameters":[
+            "name": "detachFrom",
+            "parameters": [
               "interrupt"
             ]
           },
           {
-            "name":"detachFromAll"
+            "name": "detachFromAll"
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"interrupt",
-            "type":"string"
+            "name": "interrupt",
+            "type": "string"
           },
           {
-            "name":"mode",
-            "type":"string"
+            "name": "mode",
+            "type": "string"
           }
         ]
       },
       {
-        "name":"disableFlip",
-        "functions":[
+        "name": "disableFlip",
+        "functions": [
           {
-            "name":"trigger"
+            "name": "trigger"
           },
           {
-            "name":"attachTo",
-            "parameters":[
+            "name": "attachTo",
+            "parameters": [
               "interrupt",
               "mode"
             ]
           },
           {
-            "name":"detachFrom",
-            "parameters":[
+            "name": "detachFrom",
+            "parameters": [
               "interrupt"
             ]
           },
           {
-            "name":"detachFromAll"
+            "name": "detachFromAll"
           }
         ],
-        "parameters":[
+        "parameters": [
           {
-            "name":"interrupt",
-            "type":"string"
+            "name": "interrupt",
+            "type": "string"
           },
           {
-            "name":"mode",
-            "type":"string"
+            "name": "mode",
+            "type": "string"
           }
         ]
       }

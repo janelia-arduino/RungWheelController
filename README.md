@@ -36,15 +36,17 @@ License:
 
 ```json
 {
-  "id":"getApi",
-  "result":{
-    "firmware":["RungWheelController"],
-    "verbosity":"NAMES",
-    "functions":[
+  "id": "getApi",
+  "result": {
+    "firmware": [
+      "RungWheelController"
+    ],
+    "verbosity": "NAMES",
+    "functions": [
       "setClientPropertyValues",
       "flipEnabled"
     ],
-    "properties":[
+    "properties": [
       "flipperDelay",
       "flipperPeriod",
       "flipperOnDuration",
@@ -52,7 +54,7 @@ License:
       "rungUpCountUpper",
       "rungDownCount"
     ],
-    "callbacks":[
+    "callbacks": [
       "flip",
       "enableFlip",
       "disableFlip"
