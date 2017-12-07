@@ -19,6 +19,9 @@ void RungWheelController::setup()
   // Parent Setup
   HBridgeController::setup();
 
+  // Reset Watchdog
+  resetWatchdog();
+
   // Variable Setup
   flipping_ = false;
   flip_enabled_ = true;
