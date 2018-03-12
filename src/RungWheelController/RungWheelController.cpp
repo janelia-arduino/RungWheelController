@@ -136,6 +136,7 @@ bool RungWheelController::flipEnabled()
 // const char *
 // ArduinoJson::JsonArray *
 // ArduinoJson::JsonObject *
+// const ConstantString *
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
 //
