@@ -102,7 +102,7 @@ void RungWheelController::setup()
 
 }
 
-void RungWheelController::flip(const ConstantString * polarity_ptr)
+void RungWheelController::flip(const ConstantString * const polarity_ptr)
 {
   if (!flipping_ && flip_enabled_)
   {
