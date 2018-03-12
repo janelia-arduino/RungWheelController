@@ -30,6 +30,10 @@ extern const uint32_t flipper_channels;
 extern const ConstantString * const polarity_up_ptr;
 extern const ConstantString * const polarity_down_ptr;
 
+extern const size_t optical_switch_interface_address[1];
+
+extern const size_t encoder_interface_simple_address[2];
+
 // Interrupts
 
 // Units
