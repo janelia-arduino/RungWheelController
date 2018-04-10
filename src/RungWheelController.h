@@ -55,9 +55,9 @@ private:
   // Handlers
   void setClientPropertyValuesHandler();
   void flipEnabledHandler();
-  void enableFlipHandler(modular_server::Interrupt * interrupt_ptr);
-  void disableFlipHandler(modular_server::Interrupt * interrupt_ptr);
-  void flipHandler(modular_server::Interrupt * interrupt_ptr);
+  void enableFlipHandler(modular_server::Pin * pin_ptr);
+  void disableFlipHandler(modular_server::Pin * pin_ptr);
+  void flipHandler(modular_server::Pin * pin_ptr);
 
 };
 

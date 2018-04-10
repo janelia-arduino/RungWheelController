@@ -14,7 +14,7 @@ namespace rung_wheel_controller
 {
 namespace constants
 {
-// Interrupts
+// Pins
 
 // Units
 

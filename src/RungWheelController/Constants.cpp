@@ -17,29 +17,29 @@ CONSTANT_STRING(device_name,"rung_wheel_controller");
 CONSTANT_STRING(firmware_name,"RungWheelController");
 // Use semantic versioning http://semver.org/
 const modular_server::FirmwareInfo firmware_info =
-  {
-    .name_ptr=&firmware_name,
-    .version_major=2,
-    .version_minor=1,
-    .version_patch=0,
-  };
+{
+  .name_ptr=&firmware_name,
+  .version_major=2,
+  .version_minor=1,
+  .version_patch=0,
+};
 
 const uint32_t flipper_channels = B11;
 const ConstantString * const polarity_up_ptr =  &h_bridge_controller::constants::polarity_positive;
 const ConstantString * const polarity_down_ptr =  &h_bridge_controller::constants::polarity_negative;
 
 const size_t optical_switch_interface_address[1] =
-  {
-    3,
-  };
+{
+  3,
+};
 
 const size_t encoder_interface_simple_address[2] =
-  {
-    3,
-    3,
-  };
+{
+  3,
+  3,
+};
 
-// Interrupts
+// Pins
 
 // Units
 

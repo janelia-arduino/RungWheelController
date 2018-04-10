@@ -37,7 +37,7 @@ void RungWheelController::setup()
 
   // Add Hardware
 
-  // Interrupts
+  // Pins
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,
@@ -84,21 +84,21 @@ void RungWheelController::setup()
 
   // Callbacks
   modular_server::Callback & flip_callback = modular_server_.createCallback(constants::flip_callback_name);
-  flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::flipHandler));
+  flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&RungWheelController::flipHandler));
   flip_callback.addProperty(rung_up_count_lower_property);
   flip_callback.addProperty(rung_up_count_upper_property);
   flip_callback.addProperty(rung_down_count_property);
 #if defined(__MK20DX256__) || defined(__MK64FX512__)
-  flip_callback.attachTo(modular_device_base::constants::bnc_a_interrupt_name,modular_server::interrupt::mode_falling);
+  flip_callback.attachTo(modular_device_base::constants::bnc_a_pin_name,modular_server::pin::mode_falling);
 #elif defined(__AVR_ATmega2560__)
-  flip_callback.attachTo(h_bridge_controller::constants::switch_0_interrupt_name,modular_server::interrupt::mode_falling);
+  flip_callback.attachTo(h_bridge_controller::constants::switch_0_pin_name,modular_server::pin::mode_falling);
 #endif
 
   modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
-  enable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::enableFlipHandler));
+  enable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&RungWheelController::enableFlipHandler));
 
   modular_server::Callback & disable_flip_callback = modular_server_.createCallback(constants::disable_flip_callback_name);
-  disable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&RungWheelController::disableFlipHandler));
+  disable_flip_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&RungWheelController::disableFlipHandler));
 
 }
 
@@ -163,7 +163,7 @@ void RungWheelController::flipEnabledHandler()
   modular_server_.response().returnResult(flipEnabled());
 }
 
-void RungWheelController::enableFlipHandler(modular_server::Interrupt * interrupt_ptr)
+void RungWheelController::enableFlipHandler(modular_server::Pin * pin_ptr)
 {
   if (!flip_enabled_)
   {
@@ -173,7 +173,7 @@ void RungWheelController::enableFlipHandler(modular_server::Interrupt * interrup
   }
 }
 
-void RungWheelController::disableFlipHandler(modular_server::Interrupt * interrupt_ptr)
+void RungWheelController::disableFlipHandler(modular_server::Pin * pin_ptr)
 {
   if (flip_enabled_)
   {
@@ -183,7 +183,7 @@ void RungWheelController::disableFlipHandler(modular_server::Interrupt * interru
   }
 }
 
-void RungWheelController::flipHandler(modular_server::Interrupt * interrupt_ptr)
+void RungWheelController::flipHandler(modular_server::Pin * pin_ptr)
 {
   if (!flipping_ && flip_enabled_)
   {

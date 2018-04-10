@@ -34,7 +34,7 @@ extern const size_t optical_switch_interface_address[1];
 
 extern const size_t encoder_interface_simple_address[2];
 
-// Interrupts
+// Pins
 
 // Units
 
