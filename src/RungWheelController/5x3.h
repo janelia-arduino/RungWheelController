@@ -36,31 +36,6 @@ extern const bool channels_enabled_default[h_bridge_controller::constants::CHANN
 }
 }
 
-#elif defined(__AVR_ATmega2560__)
-
-namespace rung_wheel_controller
-{
-namespace constants
-{
-// Pins
-
-// Units
-
-// Properties
-// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
-extern const bool polarity_reversed_default[h_bridge_controller::constants::CHANNEL_COUNT];
-
-extern const bool channels_enabled_default[h_bridge_controller::constants::CHANNEL_COUNT];
-
-// Parameters
-
-// Functions
-
-// Callbacks
-
-// Errors
-}
-}
 #endif
 
 #endif

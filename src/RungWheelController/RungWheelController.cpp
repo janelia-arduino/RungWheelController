@@ -89,9 +89,7 @@ void RungWheelController::setup()
   flip_callback.addProperty(rung_up_count_upper_property);
   flip_callback.addProperty(rung_down_count_property);
 #if defined(__MK20DX256__) || defined(__MK64FX512__)
-  flip_callback.attachTo(modular_device_base::constants::bnc_a_pin_name,modular_server::pin::mode_falling);
-#elif defined(__AVR_ATmega2560__)
-  flip_callback.attachTo(h_bridge_controller::constants::switch_0_pin_name,modular_server::pin::mode_falling);
+  flip_callback.attachTo(modular_device_base::constants::bnc_a_pin_name,modular_server::constants::pin_mode_interrupt_falling);
 #endif
 
   modular_server::Callback & enable_flip_callback = modular_server_.createCallback(constants::enable_flip_callback_name);
