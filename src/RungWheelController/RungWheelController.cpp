@@ -41,10 +41,10 @@ void RungWheelController::setup()
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,
-                              properties_,
-                              parameters_,
-                              functions_,
-                              callbacks_);
+    properties_,
+    parameters_,
+    functions_,
+    callbacks_);
 
   // Properties
   modular_server_.property(h_bridge_controller::constants::polarity_reversed_property_name).setDefaultValue(constants::polarity_reversed_default);
@@ -112,11 +112,11 @@ void RungWheelController::flip(const ConstantString * const polarity_ptr)
     long flipper_on_duration;
     modular_server_.property(constants::flipper_on_duration_property_name).getValue(flipper_on_duration);
     addPwm(constants::flipper_channels,
-           polarity_ptr,
-           flipper_delay,
-           flipper_period,
-           flipper_on_duration,
-           1);
+      polarity_ptr,
+      flipper_delay,
+      flipper_period,
+      flipper_on_duration,
+      1);
   }
 }
 
