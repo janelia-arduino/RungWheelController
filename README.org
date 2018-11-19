@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: RungWheelController
-  - Version :: 2.1.0
+  - Version :: 2.1.1
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/RungWheelController
   - Author :: Peter Polidoro

@@ -27,8 +27,8 @@ void RungWheelController::setup()
   flip_enabled_ = true;
 
   // Clients Setup
-  optical_switch_interface_ptr_ = &(createClientAtAddress(constants::optical_switch_interface_address));
-  encoder_interface_simple_ptr_ = &(createClientAtAddress(constants::encoder_interface_simple_address));
+  optical_switch_interface_ptr_ = &(createClientAtAddress(optical_switch_interface::constants::device_name,constants::optical_switch_interface_address));
+  encoder_interface_simple_ptr_ = &(createClientAtAddress(encoder_interface_simple::constants::device_name,constants::encoder_interface_simple_address));
 
   // Pin Setup
 
