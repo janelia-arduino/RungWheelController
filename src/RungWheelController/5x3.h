@@ -3,7 +3,7 @@
 //
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 #ifndef RUNG_WHEEL_CONTROLLER_5X3_CONSTANTS_H
 #define RUNG_WHEEL_CONTROLLER_5X3_CONSTANTS_H
